@@ -20,6 +20,8 @@ SELECT * FROM ${prefix}_airlines.flights.REFS;
 
 - Now let's run the following query. Use the snapshot ID from earlier.
 
+![Create a Branch](../images/Create_Branch.png)
+
 ```sql
 ALTER TABLE ${prefix}_airlines.flights CREATE BRANCH initial FOR SYSTEM_VERSION AS OF ${snapshot_id};
 
