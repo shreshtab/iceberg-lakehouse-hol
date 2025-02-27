@@ -14,7 +14,7 @@ Both methods will help you leverage Iceberg's advanced features for efficient da
 Before starting, ensure you have:
 
 - Access to the Cloudera environment.
-- Proper permissions to execute SQL commands in HUE for Hive Virtual Warehouse (VW) or Impala VW.
+- Proper permissions to execute SQL commands in HUE for Hive Virtual Warehouse (VW).
 - Your `${prefix}` (e.g., your User ID) ready for use in the queries.
 
 ## Method 1: In-Place Migration (Convert Existing Table to Iceberg)
@@ -31,14 +31,14 @@ First, describe the existing table to review its current properties.
    DESCRIBE FORMATTED ${prefix}_airlines.planes;
    ```
 
-   ![47.png](../../images/47.png)
+   ![47.png](../images/47.png)
 
 2. In the output, look for the following properties:
 
    - **Table Type**: Indicates the format of the table (e.g., MANAGED, EXTERNAL).
    - **SerDe Library**: Shows the Serializer/Deserializer used for the table.
 
-   ![48.png](../../images/48.png)
+   ![48.png](../images/48.png)
 
 ### Step 2: Convert the Table to Iceberg
 
@@ -48,10 +48,7 @@ Next, you'll convert the table to Iceberg format.
 
    ``` sql
    ALTER TABLE ${prefix}_airlines.planes
-      CONVERT ICEBERG;
-
-   -- For Impala only; to use Iceberg version 2 table format, uncomment & run the following
-   -- ALTER TABLE ${prefix}_airlines.planes SET TBLPROPERTIES('format-version'='2');
+      CONVERT TO ICEBERG;
    ```
 
    ``` sql
@@ -68,7 +65,7 @@ Next, you'll convert the table to Iceberg format.
      - **Metadata Location**: Points to the location of the Iceberg metadata, which references the original data files. This method saves time as it doesn't regenerate data files, only the metadata.
      - **Storage Handler & SerDe Library**: Ensure Iceberg-specific settings are applied, using the `HiveIcebergSerDe`.
 
-      ![49.png](../../images/49.png)
+      ![49.png](../images/49.png)
 
 ### Summary of In-Place Migration
 

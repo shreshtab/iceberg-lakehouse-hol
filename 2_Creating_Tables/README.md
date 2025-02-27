@@ -17,19 +17,11 @@ Iceberg tables offer several key benefits:
 
 ### Methods Covered in This Module
 
-This module covers three distinct methods for creating Iceberg tables. Choose one of the following approaches based on your preferred toolset and requirements:
+This module covers creating Iceberg tables with Impala.
 
 #### 1. Creating Iceberg Tables Using SQL
 
 This method leverages standard SQL commands to define the table schema, data storage format (e.g., Parquet), and partitioning scheme. You'll learn how to create a partitioned Iceberg table named `flights` with relevant columns and partitioning by year.
-
-#### 2. Creating Iceberg Tables Using Spark SQL
-
-Spark SQL offers a programmatic approach to defining Iceberg tables within Spark applications. This method is ideal for those who prefer or require integration with Spark for data processing tasks.
-
-#### 3. Creating Iceberg Tables Using Spark DataFrames
-
-Using Spark DataFrames, you'll learn a programmatic way to create and manage Iceberg tables within Spark environments, allowing for greater flexibility and control over data operations.
 
 ### Key Takeaways
 
@@ -42,7 +34,3 @@ By mastering these methods, you'll be equipped to create Iceberg tables tailored
 Choose one of the following submodules to get started:
 
 `01` [Create Iceberg Tables Using SQL](create_iceberg_tbl_SQL.md)
-
-`02` [Create Iceberg Tables Using Spark SQL](create_iceberg_tbl_SparkSQL.md)
-
-`03` [Create Iceberg Tables Using Spark DataFrames](create_iceberg_tbl_SparkDataFrame.md)

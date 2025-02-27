@@ -26,7 +26,7 @@ FROM ${prefix}_airlines.flights.HISTORY;
 -- CREATE TAG (for the tag_name do NOT use capital letters)
 ALTER TABLE ${prefix}_airlines.flights 
    CREATE TAG `${tag_name}` 
-   FOR SYSTEM_VERSION AS OF ${snapshot_ID} 
+   FOR SYSTEM_VERSION AS OF ${snapshot_id} 
    RETAIN 365 DAYS;
 ```
 
@@ -47,13 +47,13 @@ SELECT * from ${prefix}_airlines.flights.REFS;
 
 - Execute the following to query the Tag
 
-- Enter "tag_audit" in the tag_name prompt.  When using a Tag to query data you'll need to append "tag_" before the name of the Tag in the previous step.
+- Enter "audit" in the tag_name prompt.  When using a Tag to query data you'll need to append "tag_" before the name of the Tag in the previous step.
 
 
 ```
 -- Query tag to see data in the Tag
 SELECT *
-  FROM ${prefix}_airlines.flights.${tag_name}
+  FROM ${prefix}_airlines.flights.tag_${tag_name}
 LIMIT 100;
 ```
 
@@ -63,12 +63,12 @@ LIMIT 100;
 
 - Executing this query will show the same data as when we used Time Travel using the Snapshot.  However, in this case I just need to use the Tag name following the table, instead of remembering the syntax for Time Travel and the snapshot id I wanted to view.  The data will be for years 1995-2006
 
-- Enter "tag_audit" in the tag_name prompt.
+- Enter "audit" in the tag_name prompt.
 
 
 ```
 SELECT year, count(*)
-FROM ${prefix}_airlines.flights.${tag_name}
+FROM ${prefix}_airlines.flights.tag_${tag_name}
 GROUP BY year
 ORDER BY year DESC;
 ```

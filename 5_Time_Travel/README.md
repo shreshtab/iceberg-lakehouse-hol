@@ -10,9 +10,9 @@ Whenever data is added, deleted, or updated in an Iceberg table, a snapshot is a
 
 ### Using Time Travel in CDP
 
-This module demonstrates how to use the Time Travel feature with both SQL (using Impala) and Spark SQL within Cloudera Data Engineering (CDE).
+This module demonstrates how to use the Time Travel feature with both SQL (using Hive) and Spark SQL within Cloudera Data Engineering (CDE).
 
-- **SQL Example**: Use the Impala interface in CDW to run Time Travel queries based on snapshot timestamps or snapshot IDs.
+- **SQL Example**: Use the Hive interface in CDW to run Time Travel queries based on snapshot timestamps or snapshot IDs.
 - **Spark SQL Example**: Use Spark in CDE to query historical data from a snapshot ID or timestamp.
 
 Both examples highlight how to retrieve data as it existed at a specific moment, making it useful for scenarios like auditing or compliance where access to historical data states is required.
@@ -31,14 +31,14 @@ Before proceeding, ensure the following:
 
 By the end of this module, you will be able to:
 
-- Query historical data using Iceberg Time Travel with SQL (Impala) and Spark SQL.
+- Query historical data using Iceberg Time Travel with SQL (Hive) and Spark SQL.
 - Identify and use Iceberg snapshots to query data from a specific point in time.
-- Understand how to utilize both Impala and Spark to perform Time Travel queries in CDP.
+- Understand how to utilize both Hive and Spark to perform Time Travel queries in CDP.
 
 ## Methods Covered in This Module
 
 ### Time Travel Using SQL  
-   This submodule demonstrates how to use SQL in CDP's Impala interface to perform Time Travel queries using snapshots. You will learn to:
+   This submodule demonstrates how to use SQL in CDP's Hive interface to perform Time Travel queries using snapshots. You will learn to:
    - Retrieve snapshots from an Iceberg table.
    - Query data using a specific snapshot timestamp.
    - Query data using a snapshot ID.
@@ -54,11 +54,10 @@ By the end of this module, you will be able to:
 
 ## Key Takeaways
 
-This module demonstrates how to utilize Iceberg's Time Travel feature to query data from specific points in time, using both SQL (Impala) and Spark SQL. This functionality is crucial for tasks such as auditing and regulatory compliance, where historical data states need to be preserved and queried.
+This module demonstrates how to utilize Iceberg's Time Travel feature to query data from specific points in time, using both SQL (Hive) and Spark SQL. This functionality is crucial for tasks such as auditing and regulatory compliance, where historical data states need to be preserved and queried.
 
 As always, remember to replace `${prefix}` with your actual user ID throughout the process.
 
 ## Submodules
 
 - `01` [Time Travel Using SQL](time_travel_SQL.md)
-- `02` [Time Travel Using Spark SQL](time_travel_spark_SQL.md)

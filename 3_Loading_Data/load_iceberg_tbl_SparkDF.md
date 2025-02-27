@@ -66,10 +66,4 @@ You have successfully loaded data into an Iceberg table using Spark DataFrames i
 
 Having completed Modules 01 to 03, you're now ready to explore more advanced features and functionalities of Iceberg tables. Here are some recommended modules to continue your learning:
 
-- **[Module 04 - Partition Evolution](Module%2004%20-%20Partition%20Evolution/README.md):** Discover how Iceberg automatically manages and evolves table partitions to optimize data organization and query performance.
-  
-- **[Module 05 - Loading Data Multi-function Analytics](Module%2005%20-%20Loading%20Data%20Multi-function%20Analytics/README.md):** Explore advanced data loading techniques to support various analytics use cases across multiple services.
-
-- **[Module 06 - Time Travel](Module%2006%20-%20Time%20Travel/README.md):** Leverage Iceberg's time travel capabilities to query historical data at specific points in time, enabling powerful analytics and audits.
-
-These modules will build on the foundational knowledge you've gained and introduce you to more sophisticated data management techniques within the Iceberg framework.
+- **[Module 04 - Partition Evolution](../4_Partition_Evolution/README.md):** Discover how Iceberg automatically manages and evolves table partitions to optimize data organization and query performance.

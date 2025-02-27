@@ -58,7 +58,7 @@ spark_df.filter(spark_df.col_name.isin(['Part 0', 'Part 1', 'Part 2'])).show()
 
 **Note**: In the output, look for the Partition Spec to confirm the table is now partitioned by year and month.
 
-TODO: Placeholder for Image: ../../images/.png
+![partition_evolution_spark.png](../images/partition_evolution_spark.png)
 
 ### Step 5: Load Additional Data
 
@@ -67,18 +67,23 @@ Load additional data into the `flights` table to take advantage of the new parti
 ``` python
 # LOAD ANOTHER YEAR OF DATA USING NEW PARTITION
 spark.sql(f"INSERT INTO {odl_database_name}.flights SELECT * FROM {csv_database_name}.flights_csv WHERE year = 2007").show()
+```
 
+Query to see that the data for 2007 was loaded successfully.
+
+``` python
+# Query Data grouped by Year
 spark.sql(f"SELECT year, count(*) FROM {odl_database_name}.flights GROUP BY year ORDER BY year desc").show()
 ```
 
 ### Step 6: Query the Iceberg Table Using Impala
 
-Switch to Impala to query the Iceberg table and analyze the benefits of the new partitioning strategy.
+Switch to Hive to query the Iceberg table and analyze the benefits of the new partitioning strategy.
 
-1. First, run the following query to analyze the data for the year 2006 (which uses the original year-only partition).
+1. First, run the following query to analyze the data for the year 2006 (which uses the original year-only partition). Notice how long the query takes.
 
 ``` sql
--- RUN EXPLAIN PLAN ON THIS QUERY
+-- 2006 Query
 SELECT year, month, count(*)
 FROM ${prefix}_airlines.flights
 WHERE year = 2006 AND month = 12
@@ -89,7 +94,7 @@ ORDER BY year desc, month asc;
 2. Next, run the following query to analyze the data for the year 2007 (which uses the new year and month partition).
 
 ``` sql
--- RUN EXPLAIN PLAN ON THIS QUERY; AND COMPARE RESULTS
+-- RUN THIS QUERY AND COMPARE RESULTS
 SELECT year, month, count(*)
 FROM ${prefix}_airlines.flights
 WHERE year = 2007 AND month = 12
@@ -97,40 +102,14 @@ GROUP BY year, month
 ORDER BY year desc, month asc;
 ```
 
-### Step 7: Analyze the Explain Plans
-
-After running the queries, use the EXPLAIN feature in HUE to analyze the performance of each query.
-
-1. Highlight the first `SELECT` statement up to the `;` and click on the EXPLAIN button. Scroll down to the bottom of the Explain tab to review the results.
-
-    ![52.png](../../images/52.png)
-
-    ![54.png](../../images/54.png)
-
-2. Next, highlight the second `SELECT` statement up to the `;` and click on the EXPLAIN button again. Scroll down to the bottom of the Explain tab to review the results.
-
-    ![56.png](../../images/56.png)
-
-    ![57.png](../../images/57.png)
-
-> **Explanation**: When comparing the Explain Plans, you'll observe that the query for `year=2006` (using the year partition) scans one partition (~120MB) even though it also filters on the month. However, the query for `year=2007` (using the year and month partition) only scans one month of data, which is one partition of about 9MB. This results in a significant performance boost.
-
-**Query for year=2006**                                             **Query for year=2007**
-
-![58.png](../../images/58.png)
-
 ### Summary
 
-You have successfully evolved the partitions of your Iceberg table in-place using SparkSQL and demonstrated the performance benefits of optimized partitioning with Impala. This process allows you to maintain scalability and performance as your data evolves.
+You have successfully evolved the partitions of your Iceberg table in-place using SparkSQL and demonstrated the performance benefits of optimized partitioning with Hive. This process allows you to maintain scalability and performance as your data evolves.
 
 ## Next Steps
 
 To further explore partition evolution and Iceberg's capabilities, consider the following:
 
-- **[Partition Evolution Using SQL](partition_evolution_SQL.md):** Understand how to manage partition evolution using SQL, providing a more traditional approach to partition management.
-
-- **[Partition Evolution Using Spark DataFrames](partition_evolution_SparkDF.md):** Explore how to programmatically manage partitions using Spark DataFrames, providing additional flexibility and control.
-
-- **[Module 06 - Time Travel](Module%2006%20-%20Time%20Travel/README.md):** If you're interested in leveraging Iceberg's time travel capabilities to query historical data, this module will be a great next step.
+- **[Module 05 - Time Travel](../5_Time_Travel/README.md):** If you're interested in leveraging Iceberg's time travel capabilities to query historical data, this module will be a great next step.
 
 These submodules and modules will help you build on the foundational knowledge you've gained and explore more advanced capabilities of Iceberg tables.

@@ -23,19 +23,9 @@ In this module, you'll learn how to:
 
 ### Methods Covered in This Module
 
-This module covers three distinct methods for loading data into Iceberg tables:
+This module covers loading data into Iceberg using Spark DataFrames:
 
-#### 1. Loading Data Using SQL
-
-The first method demonstrates loading data from a CSV file (`flights_csv`) into an existing Iceberg table named `flights` using standard SQL commands. You will use the `INSERT INTO` statement with a `SELECT` clause to transfer data efficiently, filtering it to include only records for years up to 2006.
-
-#### 2. Loading Data Using Spark SQL
-
-This method leverages Spark SQL within a Spark session to load data into Iceberg tables. This approach is ideal for integrating data loading with Spark-based data processing tasks.
-
-#### 3. Loading Data Using Spark DataFrames
-
-The final method involves using Spark DataFrames to load data into Iceberg tables programmatically. This method provides flexibility and control, particularly when working with complex data pipelines.
+This method provides flexibility and control, particularly when working with complex data pipelines.
 
 ### Key Takeaways
 
@@ -45,10 +35,6 @@ By mastering these data-loading techniques, you'll ensure that your Iceberg tabl
 
 ## Submodules
 
-Choose one of the following submodules to get started:
+Get started:
 
-`01` [Load Iceberg Tables Using SQL](load_iceberg_tbl_SQL.md)
-
-`02` [Load Iceberg Tables Using Spark SQL](load_iceberg_tbl_SparkSQL.md)
-
-`03` [Load Iceberg Tables Using Spark DataFrames](load_iceberg_tbl_SparkDF.md)
+`01` [Load Iceberg Tables Using Spark DataFrames](load_iceberg_tbl_SparkDF.md)

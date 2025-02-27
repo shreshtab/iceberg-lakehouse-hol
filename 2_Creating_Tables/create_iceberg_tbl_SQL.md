@@ -73,7 +73,7 @@ SHOW CREATE TABLE ${prefix}_airlines.flights;
 
 **Note:** In the output, look for the correct partitioning by `year` and ensure that the table is stored using the Iceberg format with the appropriate properties.
 
-![50.png](../../images/50.png)
+![50.png](../images/50.png)
 
 ### Summary
 
@@ -81,8 +81,7 @@ You have successfully created a partitioned Iceberg table in CDP using SQL. This
 
 ## Next Steps
 
-To continue, select one of the following modules or submodules based on your requirements:
+To continue, select the following module:
 
-- [Module 03 - Loading Data: Load Iceberg Table Using SQL](load_iceberg_tbl_SQL.md)
-- [Module 13 - Loading New Data to Flights Using DataFrame](load_new_data_to_flights_DF.md)
+- [Module 03 - Loading Data](../3_Loading_Data/README.md)
 
