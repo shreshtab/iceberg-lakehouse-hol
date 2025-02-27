@@ -1,2 +1,0 @@
-#  MODULE # - <MODULE_NAME>
-

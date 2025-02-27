@@ -106,3 +106,9 @@ This method is ideal when you want to create a new table from scratch in Iceberg
 ## Conclusion
 
 You’ve now learned two methods for migrating tables to Iceberg format: in-place conversion and CTAS. Both approaches allow you to take advantage of Iceberg's capabilities, whether you’re updating existing tables or creating new ones.
+
+## Next Steps
+
+To continue, select the following module:
+
+- [Module 02 - Creating Tables](../2_Creating_Tables/README.md)

@@ -21,3 +21,10 @@ In this method, you’ll explore branching and tagging using SQL. The examples d
 - Iceberg Tags and Branches are powerful features that enable isolation within a lakehouse without needing to create copies of the same data
 - Iceberg branches allow you to safely experiment and build data processing pipelines without needing to worry about impacting others
 - Tagging provides robust governance and is a lot easier to use for Time Travel queries
+
+## Submodules
+
+Choose the following submodules to get started:
+
+- `01` [Branching with SQL](branching_SQL.md)
+- `02` [Tagging with SQL](tagging_SQL.md)

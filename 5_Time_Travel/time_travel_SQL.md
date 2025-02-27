@@ -10,22 +10,8 @@ In the previous steps, we have been loading data into the `flights` Iceberg tabl
 
 In the following steps, execute these commands in Hue for Hive VW:
 
-```
+```sql
     SELECT * FROM ${prefix}_airlines.flights.HISTORY;
-
-    -- SELECT DATA USING TIMESTAMP FOR SNAPSHOT
-    SELECT year, count(*) 
-    FROM ${prefix}_airlines.flights
-      FOR SYSTEM_TIME AS OF '${create_ts}'
-    GROUP BY year
-    ORDER BY year desc;
-
-    -- SELECT DATA USING SNAPSHOT ID
-    SELECT year, count(*) 
-    FROM ${prefix}_airlines.flights
-      FOR SYSTEM_VERSION AS OF ${snapshot_id}
-    GROUP BY year
-    ORDER BY year desc;
 ```
 
 ### Step 2: Describe the History of the Iceberg Table
@@ -47,12 +33,29 @@ In the following steps, execute these commands in Hue for Hive VW:
 
 ### Step 5: Query Data for a Specific Timestamp
 
+```sql
+    -- SELECT DATA USING TIMESTAMP FOR SNAPSHOT
+    SELECT year, count(*) 
+    FROM ${prefix}_airlines.flights
+      FOR SYSTEM_TIME AS OF '${create_ts}'
+    GROUP BY year
+    ORDER BY year desc;
+```
+
 - Highlight and execute the query with `FOR SYSTEM_TIME AS OF`. You can use either a specific timestamp or a relative timestamp. Iceberg will query the snapshot that was in effect as of the specified time.
 
-	![Query by Timestamp](../images/61.png)
+	![Query by Timestamp](../images/See_History.png)
 
 ### Step 6: Query Data for a Specific Snapshot ID
 
+```sql
+    -- SELECT DATA USING SNAPSHOT ID
+    SELECT year, count(*) 
+    FROM ${prefix}_airlines.flights
+      FOR SYSTEM_VERSION AS OF ${snapshot_id}
+    GROUP BY year
+    ORDER BY year desc;
+```
 - Highlight and execute the query with `FOR SYSTEM_VERSION AS OF` to use the specific snapshot ID.
 
 ## Summary
@@ -61,6 +64,6 @@ In this submodule, you learned how to use Iceberg’s **Time Travel** feature in
 
 ## Next Steps
 
-To continue exploring Iceberg Time Travel with Spark SQL, proceed to the next module:
+To continue exploring Iceberg, proceed to the next module:
 
 - `06` [Branching and Tagging](../6_Branching_and_Tagging//README.md)

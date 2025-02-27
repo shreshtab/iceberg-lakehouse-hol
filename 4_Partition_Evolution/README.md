@@ -28,6 +28,6 @@ After evolving the partition, you’ll use Hive to query the Iceberg table and a
 
 ## Submodules
 
-Choose the following submodules to get started:
+Choose the following submodule to get started:
 
 `01` [Partition Evolution Using Spark SQL](partition_evolution_SparkSQL.md)  

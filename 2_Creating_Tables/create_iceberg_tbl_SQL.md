@@ -59,7 +59,6 @@ CREATE EXTERNAL TABLE ${prefix}_airlines.flights (
 )
 PARTITIONED BY (year int)
 STORED BY ICEBERG
-STORED AS PARQUET
 TBLPROPERTIES ('external.table.purge'='true');
 ```
 

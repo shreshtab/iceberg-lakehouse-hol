@@ -72,3 +72,5 @@ FROM ${prefix}_airlines.flights.tag_${tag_name}
 GROUP BY year
 ORDER BY year DESC;
 ```
+
+CONGRATS! You made it through to the end of the lab!

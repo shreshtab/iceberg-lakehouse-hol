@@ -2,60 +2,65 @@
 
 # Branching
 
-In this section we will work with Branches to create a branch to let us .
+In this section we will work with Branches to create a branch to let us create isolated branches of our table to test new data processing workflows, transformations, or schema changes without affecting production data.
 
-Branches are named references to snapshots with their own independent lifecycles.  You can use a <b>Branch</b> in your data engineering workflows and create experimetnal branches for testing & validating new jobs.  Other use cases inclue GDPR requirements and retaining important historical snapshots for auditing. 
+Branches are named references to snapshots with their own independent lifecycles. Other use cases inclue GDPR requirements and retaining important historical snapshots for auditing. 
 
 **Query the Planes Table (in CDW HUE)**
 
-- Execute the following in HUE for Hive VW
+- Execute the following in HUE for Hive VW. Pick up a snapshot ID to use for the next step.
 
-- This query can be used to check results for flight delays
+```sql
+-- See table history
+SELECT * FROM ${prefix}_airlines.flights.HISTORY;
 
-```
-SELECT * FROM ${prefix}_airlines.flights
-LIMIT 100;
-```
-
-- In 
-
-- Execute the following in HUE for Hive VW
-
-- This query can be used to check results for flight delays by making a change to the SQL to see if the results change.
-
-```
+-- See table references including branches
+SELECT * FROM ${prefix}_airlines.flights.REFS;
 ```
 
-- This query represents the correct results for flight delays.  This would be how each user querying the table to return Avg. Flight Delays would need to query the table
+- Now let's run the following query. Use the snapshot ID from earlier.
 
-  - Instead of having complex SQL requirements, it would be better to modify the data accordingly.  We will do this by updating the data
+```sql
+ALTER TABLE ${prefix}_airlines.flights CREATE BRANCH initial FOR SYSTEM_VERSION AS OF ${snapshot_id};
 
-  - Execute the following to update the table
+-- Alternate (optional option)
+ALTER TABLE ${prefix}_airlines.flights CREATE BRANCH next FOR SYSTEM_TIME AS OF '${create_ts}';
 
-  ```
-  ```
-
-
-
-
-**Create Branch for Testing new Data Engineering Workflow**
-
-- Create a branch by basing the branch on a snapshot ID.  You can also use a timestamp, or state of the table.  Using the SNAPSHOT RETENTION clause, you can create a branch that limits the number of snapshots of a table.
-
-- 
-
-- E
-
-**Query the Branch for the Flights Table (in CDW HUE)**
-
-- Execute the following in HUE for Hive VW
-
-```
-SELECT * 
-  FROM ${prefix}_airlines.flights.branch_${branch_name}
-LIMIT 100;
+-- See table references including the new branch
+SELECT * FROM ${prefix}_airlines.flights.REFS;
 ```
 
-- In results you see that 
+You can also create a branch without specifying a snapshot or system time version.
 
+```sql
+ALTER TABLE ${prefix}_airlines.flights
+CREATE BRANCH backup;
 
+-- Run to see updates
+SELECT * FROM ${prefix}_airlines.flights.REFS;
+```
+
+Next, let's query a branch.
+
+```sql
+SELECT year, count(*) 
+    FROM ${prefix}_airlines.flights.branch_initial
+    GROUP BY year
+    ORDER BY year desc;
+```
+
+Similarly, one can make updates to a given branch in isolation from the main branch.
+
+Other branching capabilities include:
+
+- Fast-forwarding a Branch (under certain conditions)
+
+- Specify the number of snapshots a branch retains
+
+- Deleting a Branch
+
+## Next Steps
+
+To continue exploring Iceberg, proceed to the next module:
+
+- `01` [Tagging](../6_Branching_and_Tagging/tagging_SQL.md)

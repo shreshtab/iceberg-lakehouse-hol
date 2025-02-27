@@ -2,7 +2,7 @@
 
 ## Overview
 
-This module provides a comprehensive guide to creating Iceberg tables on the Cloudera Data Platform (CDP) using three distinct methods: SQL, Spark SQL, and Spark DataFrames. Iceberg tables are designed to handle large-scale data management with features like schema evolution, partitioning, and efficient querying, making them ideal for modern data environments.
+This module provides a comprehensive guide to creating Iceberg tables on Cloudera using SQL. Iceberg tables are designed to handle large-scale data management with features like schema evolution, partitioning, and efficient querying, making them ideal for modern data environments.
 
 ### Why Iceberg Tables?
 
@@ -19,8 +19,6 @@ Iceberg tables offer several key benefits:
 
 This module covers creating Iceberg tables with Impala.
 
-#### 1. Creating Iceberg Tables Using SQL
-
 This method leverages standard SQL commands to define the table schema, data storage format (e.g., Parquet), and partitioning scheme. You'll learn how to create a partitioned Iceberg table named `flights` with relevant columns and partitioning by year.
 
 ### Key Takeaways
@@ -31,6 +29,6 @@ By mastering these methods, you'll be equipped to create Iceberg tables tailored
 
 ## Submodules
 
-Choose one of the following submodules to get started:
+Choose the following submodule to get started:
 
 `01` [Create Iceberg Tables Using SQL](create_iceberg_tbl_SQL.md)

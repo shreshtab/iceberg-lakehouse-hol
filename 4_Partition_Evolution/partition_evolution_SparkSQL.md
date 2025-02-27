@@ -76,7 +76,7 @@ Query to see that the data for 2007 was loaded successfully.
 spark.sql(f"SELECT year, count(*) FROM {odl_database_name}.flights GROUP BY year ORDER BY year desc").show()
 ```
 
-### Step 6: Query the Iceberg Table Using Impala
+### Step 6: Query the Iceberg Table Using Hive
 
 Switch to Hive to query the Iceberg table and analyze the benefits of the new partitioning strategy.
 
